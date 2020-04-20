@@ -11,5 +11,9 @@ public class App {
         dua.setR(20);
         System.out.printf("\n\nLuas tabung %f cm2", dua.getLuas());
         System.out.printf("\nVolume tabung %f cm3", dua.getVolume());
+        Busur tiga = new Busur();
+        tiga.setR(28);
+        tiga.setSudut(36);
+        System.out.printf("\n\nPanjang busur %f cm", tiga.getPanjang());
     }
 }

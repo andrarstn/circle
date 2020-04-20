@@ -12,15 +12,15 @@ public class Tabung extends Lingkaran {
     }
 
     private double hitungLuas() {
-        return super.getKeliling() * (super.getRadius() + tinggi);
+        return super.getKeliling() * (super.getRadius() + getTinggi());
     }
 
     private double hitungVolume() {
-        return super.getLuas() * tinggi;
+        return super.getLuas() * getTinggi();
     }
 
     public double getLuas() {
-        return this.hitungLuas();
+        return hitungLuas();
     }
 
     public double getVolume() {
