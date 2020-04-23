@@ -1,6 +1,7 @@
 package app;
 
 public class Lingkaran {
+    private final double phi = 22/7.0;
     private double radius;
 
     public double getRadius() {
@@ -12,11 +13,11 @@ public class Lingkaran {
     }
 
     private double hitungLuas() {
-        return Math.PI * Math.pow(radius, 2);
+        return phi * Math.pow(radius, 2);
     }
 
     private double hitungKeliling() {
-        return Math.PI * 2 * radius;
+        return phi * 2 * radius;
     }
 
     public double getLuas() {
