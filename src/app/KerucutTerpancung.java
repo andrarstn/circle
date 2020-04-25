@@ -44,4 +44,15 @@ public class KerucutTerpancung extends Kerucut{
     public double getLuas(){
         return hitungLuas();
     }
+    
+    public void setRadius(double r1, double r2) throws BukanKerucutTerpancungException{
+        if(r1 != r2){
+            super.setR(r1);
+            this.radius2 = r2;
+        }
+        else{
+            BukanKerucutTerpancungException e = new BukanKerucutTerpancungException("Kalau nilai radius 1 dan radius 2 sama, namanya bukan kerucut terpancung, melainkan tabung.");
+            throw e;
+        }
+    }
 }
