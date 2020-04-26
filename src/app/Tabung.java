@@ -3,26 +3,24 @@ package app;
 public class Tabung extends Lingkaran {
     private double tinggi;
 
-    public double getTinggi() {
-        return tinggi;
+    //  set tinggi
+    public void setTinggi(double newtinggi) {
+        this.tinggi = newtinggi;
+        super.setTinggi(newtinggi);     //  mengirim tinggi ke lingkaran
     }
-
-    public void setTinggi(double tinggi) {
-        this.tinggi = tinggi;
-    }
-
+    //  rumus luas
     private double hitungLuas() {
-        return super.getKeliling() * (super.getRadius() + getTinggi());
+        return 2*super.getLuas()+super.getKeliling()*this.tinggi;
     }
-
+    //  rumus volume
     private double hitungVolume() {
-        return super.getLuas() * getTinggi();
+        return super.getLuas() * this.tinggi;
     }
-
+    //  get luas
     public double getLuas() {
         return hitungLuas();
     }
-
+    //  get volume
     public double getVolume() {
         return hitungVolume();
     }
