@@ -1,50 +1,32 @@
 package app;
 
 public class Kerucut extends Lingkaran{
-    private double tinggi;
-
+    private static double radius;
+    private static double tinggi;
+    
+    //  ambil radius dan tinggi dari lingkaran
     Kerucut(){
-        
+        radius=super.getRadius();
+        tinggi=super.getTinggi();
     }
-
-    Kerucut(double tinggi, double radius){
-        this.tinggi = tinggi;
-        super.setR(radius);
+    //  rumus garis pelukis kerucut
+    private double hitungG_pelukis(){
+        return Math.sqrt(Math.pow(radius,2)+Math.pow(tinggi,2));
     }
-
-    public double getTinggi() {
-        return tinggi;
-    }
-
-    public void setTinggi(double tinggi) {
-        this.tinggi = tinggi;
-    }
-
-    private double hitungGarisPelukis(){
-        //Garis Pelukis = s
-        //s = pitagoras radius & tinggi
-        return Math.sqrt(Math.pow(super.getRadius(),2)+Math.pow(this.tinggi,2));
-    }
-
-    public double getGarisPelukis(){
-        return hitungGarisPelukis();
-    }
-
-    private double hitungVolume(){
-        //Volume Keurcut = 1/3 * Luas alas * Tinggi
-        // 1/3 * phi * r^2 * r
-        return 1/3.0 * super.getLuas() * this.tinggi;
-    }
-
-    public double getVolume(){
-        return hitungVolume();
-    }
-
+    //  rumus luas (luas lingkaran + selimut kerucut)
     private double hitungLuas(){
-        return phi*super.getRadius()*(super.getRadius()+this.getGarisPelukis());
+        return super.getLuas() + PHI*radius*this.hitungG_pelukis();
     }
-
+    //  rumus volume 
+    private double hitungVolume(){
+        return 1.0/3.0*super.getLuas()*tinggi;
+    }
+    //  get luas
     public double getLuas(){
         return this.hitungLuas();
+    }
+    //  get volume
+    public double getVolume(){
+        return this.hitungVolume();
     }
 }
