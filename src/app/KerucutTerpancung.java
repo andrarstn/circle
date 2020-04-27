@@ -1,20 +1,19 @@
 package app;
 
 public class KerucutTerpancung extends Kerucut{
-    private double radius;
-    private double tinggi;
+ 
     private double tinggi_k;
     private double radius_k;
 
-    //  ambil radius dan tinggi dari lingkaran
-    KerucutTerpancung(){
-        this.radius=super.getRadius();
-        this.tinggi=super.getTinggi();
-    }
     //  set tinggi kerucut kecil dan hitung radius kerucut kecil
     public void setTinggi_K(double newtinggik){
         this.tinggi_k = newtinggik;
-        this.radius_k = (this.radius*this.tinggi_k)/this.tinggi;
+        this.radius_k = (super.getRadius()*this.tinggi_k)/super.getTinggi();
+    }
+    //  overloading
+    public void setTinggi_K(int newtinggik){
+        this.tinggi_k = newtinggik;
+        this.radius_k = (super.getRadius()*this.tinggi_k)/super.getTinggi();
     }
     //  hitung volume kerucut kecil
     private double hitungVolume_K(){

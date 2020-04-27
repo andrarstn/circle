@@ -2,16 +2,15 @@ package app;
 
 public class Juring2D extends Lingkaran{
     private double sudut;
-    private double radius;
 
-    //  ambil radius dan sudut dari lingkaran
+    //  ambil sudut dari busur
     Juring2D(){
-        this.radius = super.getRadius();
-        this.sudut  = super.getSudut();
+        Busur bus = new Busur();
+        this.sudut = bus.getSudut();
     }
     //  rumus keliling juring2d (diameter + panjang busur)
     private double hitungKeliling(){
-        return 2*this.radius*(1 + sudut/360*PHI);
+        return 2*super.getRadius()*(1 + sudut/360*PHI);
     }
     //  rumus luas juring2d
     private double hitungLuas(){
@@ -22,7 +21,7 @@ public class Juring2D extends Lingkaran{
         return this.hitungKeliling();
     }
     //  get luas
-    public double getLuas(){
+    public double getLuas(){    //  overriding
         return this.hitungLuas();
     }
 

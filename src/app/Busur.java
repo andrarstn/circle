@@ -2,12 +2,7 @@ package app;
 
 public class Busur extends Lingkaran {
     private static double sudut;
-    private static double radius;
     
-    //  ambil radius dari lingkaran
-    Busur(){
-        radius=super.getRadius();
-    }
     //  get susut
     public double getSudut() {
         return sudut;
@@ -15,11 +10,14 @@ public class Busur extends Lingkaran {
     //  set sudut
     public void setSudut(double newsudut) {
         sudut = newsudut;
-        super.setSudut(newsudut);   //  mengirim sudut ke lingkaran
+    }
+    //  overloading
+    public void setSudut(int newsudut) {
+        sudut = newsudut;
     }
     //  rumus panjang busur
     private double hitungPanjang_B(){
-        return (sudut/360)*2*PHI*radius;
+        return (sudut/360)*2*PHI*super.getRadius();
     }
     //  get panjang busur
     public double getPanjang_B(){
@@ -27,7 +25,7 @@ public class Busur extends Lingkaran {
     }
     //  rumus setengah tali busur / radius busur
     private double hitungTali_B(){
-        return radius*Math.sin(Math.toRadians(sudut/2));
+        return super.getRadius()*Math.sin(Math.toRadians(sudut/2));
     }
     //  get setengah tali busur
     public double getTali_B(){
@@ -39,7 +37,7 @@ public class Busur extends Lingkaran {
     }
     //  rumus tinggi busur (radius dikurangi jarak pusat lingkaran dengan tali busur)
     private double hitungTinggi_B(){
-        return radius-(radius*Math.cos(Math.toRadians(sudut/2)));
+        return super.getRadius()-(super.getRadius()*Math.cos(Math.toRadians(sudut/2)));
     }
     //  get tinggi busur
     public double getTinggi_B(){
