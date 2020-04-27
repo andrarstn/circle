@@ -1,90 +1,39 @@
 package app;
 
 public class KerucutTerpancung extends Kerucut{
-    private double radius2;
+ 
+    private double tinggi_k;
+    private double radius_k;
 
-    public double getR2(){
-        return radius2;
+    //  set tinggi kerucut kecil dan hitung radius kerucut kecil
+    public void setTinggi_K(double newtinggik){
+        this.tinggi_k = newtinggik;
+        this.radius_k = (super.getRadius()*this.tinggi_k)/super.getTinggi();
     }
-
-    public void setR2(double radius2){
-        this.radius2 = radius2;
+    //  hitung volume kerucut kecil
+    private double hitungVolume_K(){
+        return 1.0/3.0*PHI*Math.pow(this.radius_k,2)*this.tinggi_k;
     }
-
-    private double hitungTinggi2(){
-        if(super.getRadius() > this.radius2){
-            return (super.getTinggi()*this.radius2)/(super.getRadius()-this.radius2);
-        }
-        else{
-            return (super.getTinggi()*super.getRadius())/(this.radius2-super.getRadius());
-        }
-    }
-
-    public double getTinggi2(){
-        return hitungTinggi2();
-    }
-
-    private double hitungVolumeKecil(){
-        if(super.getRadius() > this.radius2){
-            Kerucut k1 = new Kerucut(this.getTinggi2(),this.radius2);
-            return k1.getVolume();
-        }
-        else{
-            Kerucut k1 = new Kerucut(this.getTinggi2(),super.getRadius());
-            return k1.getVolume();
-        }
-    }
-
-    public double getVolumeKecil(){
-        return hitungVolumeKecil();
-    }
-
-    private double hitungVolumeBesar(){
-        if(super.getRadius() > this.radius2){
-            Kerucut k2 = new Kerucut(super.getTinggi()+this.getTinggi2(),super.getRadius());
-            return k2.getVolume();
-        }
-        else{
-            Kerucut k2 = new Kerucut(super.getTinggi()+this.getTinggi2(),this.radius2);
-            return k2.getVolume();
-        }
-    }
-
-    public double getVolumeBesar(){
-        return hitungVolumeBesar();
-    }
-
+    //  hitung volume (volume awal-kerucut kecil)
     private double hitungVolume(){
-        return getVolumeBesar()-getVolumeKecil();
+        return super.getVolume()-this.hitungVolume_K();
     }
-
-    public double getVolume(){
-        return hitungVolume();
+    //  hitung selimut kerucut kecil
+    private double hitungSelimut_K(){
+        return PHI*this.radius_k*Math.sqrt(Math.pow(this.radius_k,2)+Math.pow(this.tinggi_k,2));
     }
-
-    private double hitungA(){
-        //A = sqrt(t^2 + (r1-r2)^2)
-        return Math.sqrt(Math.pow(super.getTinggi(), 2) + Math.pow((Math.abs(super.getRadius()-this.radius2)),2));
-    }
-
-    private double hitungLuasSelimut(){
-        //hanya luas selimut
-        // L = phi * A (r1 + r2)
-        return phi * hitungA() * (super.getRadius()+this.radius2);
-    }
-
-    public double getLuasSelimut(){
-        return hitungLuasSelimut();
-    }
-
+    //  hitung luas (luas kerucut awal - selimut kerucut kecil + lingkaran kecil)
     private double hitungLuas(){
-        //luas permukaan atau luas seluruhnya
-        // L = Luas selimut + luas lingkaran (besar + kecil)
-        return getLuasSelimut() + phi * (Math.pow(super.getRadius(), 2) + Math.pow(this.radius2, 2));
+        return super.getLuas() - this.hitungSelimut_K() + PHI*Math.pow(this.radius_k,2);
     }
-
+    //  get luas
     public double getLuas(){
-        return hitungLuas();
+        return this.hitungLuas();
+    }
+    //  get volume
+    public double getVolume(){
+        return this.hitungVolume();
     }
 
+    
 }
