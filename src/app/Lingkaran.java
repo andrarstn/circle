@@ -1,14 +1,14 @@
 package app;
 
 public class Lingkaran {
-    public final double phi = 22/7.0;
+    public final double phi = 22 / 7.0;
     private double radius;
 
     public double getRadius() {
         return radius;
     }
 
-    public void setR(double radius) {
+    public void setRadius(double radius) {
         this.radius = radius;
     }
 

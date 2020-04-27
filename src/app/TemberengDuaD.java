@@ -1,6 +1,6 @@
 package app;
 
-public class TemberengDuaD extends Lingkaran{
+public class TemberengDuaD extends Lingkaran {
     private double derajat;
 
     public double getDerajat() {
@@ -11,21 +11,22 @@ public class TemberengDuaD extends Lingkaran{
         this.derajat = derajat;
     }
 
-    private double hitungBusur(){
+    private double hitungBusur() {
         return (getDerajat() * super.getKeliling()) / 360;
     }
 
-    private double hitungTaliBusur(){
-        //2r sin (teta/2)
-        return 2*super.getRadius()*Math.sin(Math.toRadians(derajat)/2);
+    private double hitungTaliBusur() {
+        // 2r sin (teta/2)
+        return 2 * super.getRadius() * Math.sin(Math.toRadians(derajat) / 2);
     }
 
     private double hitungKeliling() {
-        return hitungBusur()+hitungTaliBusur();
+        return hitungBusur() + hitungTaliBusur();
     }
 
     private double hitungLuas() {
-        return derajat / 360 * super.getLuas() - 1/2.0 * Math.pow(super.getRadius(), 2) * Math.sin(Math.toRadians(derajat));
+        return derajat / 360 * super.getLuas()
+                - 1 / 2.0 * Math.pow(super.getRadius(), 2) * Math.sin(Math.toRadians(derajat));
     }
 
     public double getLuas() {
@@ -34,5 +35,9 @@ public class TemberengDuaD extends Lingkaran{
 
     public double getKeliling() {
         return hitungKeliling();
+    }
+
+    public double getTaliBusur() {
+        return hitungTaliBusur();
     }
 }
