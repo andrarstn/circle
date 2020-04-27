@@ -1,7 +1,5 @@
 package app;
 
-
-
 public class Main {
     public static void main(String[] args) throws Exception {
         Lingkaran satu = new Lingkaran();
@@ -43,3 +41,4 @@ public class Main {
         
 
 }
+

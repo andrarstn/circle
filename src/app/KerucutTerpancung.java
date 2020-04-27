@@ -40,6 +40,4 @@ public class KerucutTerpancung extends Kerucut{
     public double getVolume(){
         return this.hitungVolume();
     }
-
-    
 }
