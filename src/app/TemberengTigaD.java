@@ -20,7 +20,7 @@ public class TemberengTigaD extends TemberengDuaD {
     }
 
     private double hitungVolume() {
-        return phi / 3 * (Math.pow(this.tinggi, 2) * (3 * super.getRadius() - this.tinggi));
+        return phi * (Math.pow(this.tinggi, 2) * (3 * super.getRadius() - this.tinggi))/3;
     }
 
     public double getVolume() {
