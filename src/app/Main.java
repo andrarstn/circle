@@ -1,66 +1,92 @@
 package app;
 
+
+
 public class Main {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) throws TolakException {
         Lingkaran satu = new Lingkaran();
-        satu.setRadius(7);
-        System.out.printf("Luas lingkaran %f cm2", satu.getLuas());
-        System.out.printf("\nKeliling lingkaran %f cm2", satu.getKeliling());
 
-        Tabung dua = new Tabung();
-        dua.setTinggi(56);
-        dua.setRadius(20);
-        System.out.printf("\n\nLuas tabung %f cm2", dua.getLuas());
-        System.out.printf("\nVolume tabung %f cm3", dua.getVolume());
+        double R=7;
+        double S=60;
+        double T=10;
+        double Tk=5;
 
-        Busur tiga = new Busur();
-        tiga.setRadius(28);
-        tiga.setSudut(36);
-        System.out.printf("\n\nPanjang busur %f cm", tiga.getPanjang());
 
-        JuringDuaD empat = new JuringDuaD();
-        empat.setDerajat(60);
-        empat.setRadius(14);
-        System.out.printf("\n\nKeliling juring %f cm", empat.getKeliling());
-        System.out.printf("\nLuas juring %f cm", empat.getLuas());
-
-        JuringTigaD lima = new JuringTigaD();
-        lima.setDerajat(60);
-        lima.setRadius(9);
-        System.out.printf("\n\nLuas Juring 3D %f", lima.getLuas());
-
-        TemberengDuaD enam = new TemberengDuaD();
-        enam.setDerajat(60);
-        enam.setRadius(7);
-        System.out.printf("\n\nKeliling Tembereng 2D %f", enam.getKeliling());
-        System.out.printf("\nLuas Tembereng 2D %f", enam.getLuas());
-        System.out.printf("\nPanjang Tali Busur Tembereng 2D %f", enam.getTaliBusur());
-
-        TemberengTigaD tujuh = new TemberengTigaD();
-        tujuh.setDerajat(60);
-        tujuh.setRadius(9);
-        tujuh.setTinggi(6);
-        System.out.printf("\n\nLuas Tembereng 3D %f", tujuh.getLuas());
-        System.out.printf("\n\nVolume Tembereng 3D %f", tujuh.getVolume());
-        System.out.printf("\ntinggi Tembereng 3D %f", tujuh.getTinggi());
-        System.out.printf("\nradius Tembereng 3D %f", tujuh.getRadius());
-
-        System.out.println();
-        int a = 4;
-        int b = 0;
-        dividedByZero(a, b);
-    }
-
-    private static int dividedByZero(int a, int b) {
-        int result = 0;
-        try {
-            result = a / b;
-        } catch (ArithmeticException e) {
-            System.out.printf("\nPembagian %d dengan %d error", a, b);
-            System.out.println("\nJangan bagi 0 woy");
-            System.out.println("Errornya :" + e.getMessage());
+        if (R<0){
+            TolakException t = new TolakException("Input radius salah");
+            throw t;
         }
+        if (S<=0){
+            TolakException t = new TolakException("Input sudut salah");
+            throw t;
+        }
+        if (R<0){
+            TolakException t = new TolakException("Input Tinggi salah");
+            throw t;
+        }
+        if (T<Tk){
+            TolakException t = new TolakException("Input Tinggi kwcil salah");
+            throw t;
+        }
+    
 
-        return result;
+        satu.setRadius(R);   //    Hanya bilangan lebih sama dengan 0
+        // satu.setRadius(7.5);
+        Busur dua = new Busur();
+        dua.setSudut(S);    //    Hanya boleh lebih dari 0 dan kurang dari sama dengan 180
+        // dua.setSudut(60.5);
+        Bola tiga = new Bola();
+        Tabung empat = new Tabung();
+        empat.setTinggi(T);    //  Hanya bilangan lebih sama dengan 0
+        // empat.setTinggi(10.5);
+        Kerucut lima = new Kerucut();
+        Juring2D enam = new Juring2D();
+        Tembereng2D tujuh = new Tembereng2D();
+        KerucutTerpancung delapan = new KerucutTerpancung();
+        delapan.setTinggi_K(Tk);  //    Harus lebih kecil dari dua.setTinggi()
+        // delapan.setTinggi_K(5.5);
+        Tembereng3D sembilan = new Tembereng3D();
+        Juring3D sepuluh = new Juring3D();
+
+        // Polymorphism
+        Lingkaran L1 = new Juring2D();
+        Lingkaran L2 = new Tembereng2D();
+        Lingkaran L3 = new Bola();
+        Lingkaran L4 = new Kerucut();
+        Lingkaran L5 = new Tabung();
+
+        System.out.printf("\n-Luas Lingkaran       = %f cm2", satu.getLuas());
+        System.out.printf("\n-Luas Juring  2D     = %f cm2", L1.getLuas());
+        System.out.printf("\n-Luas Tembereng2D       = %f cm2", L2.getLuas());
+        System.out.printf("\n-Luas Bola       = %f cm2", L3.getLuas());
+        System.out.printf("\n-Luas Kerucut       = %f cm2", L4.getLuas());
+        System.out.printf("\n-Luas Tabung       = %f cm2", L5.getLuas());
+        
+        System.out.printf("\n-Luas Lingkaran       = %f cm2", satu.getLuas());
+        System.out.printf("\n-Keliling Lingkaran   = %f cm", satu.getKeliling());
+        System.out.printf("\n-Panjang Busur        = %f cm", dua.getPanjang_B());
+        System.out.printf("\n-Panjang Tali Busur   = %f cm", dua.getTali_Busur());
+        System.out.printf("\n-Luas Bola            = %f cm2", tiga.getLuas());
+        System.out.printf("\n-Volume Bola          = %f cm3", tiga.getVolume());
+        System.out.printf("\n-Luas Tabung          = %f cm2", empat.getLuas());
+        System.out.printf("\n-Volume Tabung        = %f cm3", empat.getVolume());
+        System.out.printf("\n-Luas Kerucut         = %f cm2", lima.getLuas());
+        System.out.printf("\n-Volume Kerucut       = %f cm3", lima.getVolume());
+        System.out.printf("\n-Luas Juring2D        = %f cm2", enam.getLuas());
+        System.out.printf("\n-Keliling Juring2D    = %f cm", enam.getKeliling());
+        System.out.printf("\n-Luas Tembereng2D     = %f cm2", tujuh.getLuas());
+        System.out.printf("\n-Keliling Tembereng2D = %f cm", tujuh.getKeliling());
+        System.out.printf("\n-Luas Kerucut Terpa   = %f cm2", delapan.getLuas());
+        System.out.printf("\n-Volume Kerucut Terpa = %f cm3", delapan.getVolume());
+        System.out.printf("\n-Luas Tembereng3D     = %f cm2", sembilan.getLuas());
+        System.out.printf("\n-Volume Tembereng3D   = %f cm3", sembilan.getVolume());
+        System.out.printf("\n-Luas Juring3D        = %f cm2", sepuluh.getLuas());
+        System.out.printf("\n-Volume Juring3D      = %f cm3", sepuluh.getVolume());
+        
+      
+        
+        
     }
+        
+
 }

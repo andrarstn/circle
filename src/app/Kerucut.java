@@ -1,50 +1,35 @@
 package app;
 
-public class Kerucut extends Lingkaran {
-    private double tinggi;
-
-    Kerucut() {
-
+public class Kerucut extends Lingkaran{
+    private static double tinggi;
+    
+    //  ambil tinggi daari tabung
+    Kerucut(){
+        Tabung tab = new Tabung();
+        tinggi=tab.getTinggi();
     }
-
-    Kerucut(double tinggi, double radius) {
-        this.tinggi = tinggi;
-        super.setRadius(radius);
+    //  rumus garis pelukis kerucut
+    private double hitungG_pelukis(){
+        return Math.sqrt(Math.pow(super.getRadius(),2)+Math.pow(tinggi,2));
     }
-
-    public double getTinggi() {
+    //  rumus luas (luas lingkaran + selimut kerucut)
+    private double hitungLuas(){
+        return super.getLuas() + PHI*super.getRadius()*this.hitungG_pelukis();
+    }
+    //  rumus volume 
+    private double hitungVolume(){
+        return 1.0/3.0*super.getLuas()*tinggi;
+    }
+    //  get luas
+    public double getLuas(){    //  overriding
+        return this.hitungLuas();
+    }
+    //  get luas
+    public double getTinggi(){
         return tinggi;
     }
-
-    public void setTinggi(double tinggi) {
-        this.tinggi = tinggi;
-    }
-
-    private double hitungGarisPelukis() {
-        // Garis Pelukis = s
-        // s = pitagoras radius & tinggi
-        return Math.sqrt(Math.pow(super.getRadius(), 2) + Math.pow(this.tinggi, 2));
-    }
-
-    public double getGarisPelukis() {
-        return hitungGarisPelukis();
-    }
-
-    private double hitungVolume() {
-        // Volume Keurcut = 1/3 * Luas alas * Tinggi
-        // 1/3 * phi * r^2 * r
-        return 1 / 3.0 * super.getLuas() * this.tinggi;
-    }
-
-    public double getVolume() {
-        return hitungVolume();
-    }
-
-    private double hitungLuas() {
-        return phi * super.getRadius() * (super.getRadius() + this.getGarisPelukis());
-    }
-
-    public double getLuas() {
-        return this.hitungLuas();
+    //  get volume
+    public double getVolume(){
+        return this.hitungVolume();
     }
 }
